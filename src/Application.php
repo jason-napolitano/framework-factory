@@ -31,6 +31,7 @@ namespace FrameworkFactory {
         /** @var array $providers base service providers */
         private static array $providers = [];
 
+		/** @var string $cachePath the path for the cached bootstrap file */
 		protected static string $cachePath;
 
         /**
@@ -39,10 +40,12 @@ namespace FrameworkFactory {
         public static function build(?string $cachePath = null): self
         {
             // build a new container instance
-            // container setup
             self::$container = new App\Container($cachePath);
 
-	        // configure the facade /accessor system
+			// assign the cache path
+			self::$cachePath = $cachePath;
+
+	        // configure the facade / accessor system
 	        App\Accessor::setContainer(self::$container);
 
             // assign and return the application instance
@@ -58,7 +61,8 @@ namespace FrameworkFactory {
                 throw new Exceptions\Container\EmptyProvidersValue('The providers array cannot be empty');
             }
 
-            self::$providers = $providers;
+			// assign the providers
+            self::$providers = [...self::$providers, ...$providers];
         }
 
 	    /**
@@ -66,6 +70,7 @@ namespace FrameworkFactory {
 	     */
 	    public function asVersion(string $version): void
 	    {
+			// assign the version
 		    self::$version = $version;
 	    }
 

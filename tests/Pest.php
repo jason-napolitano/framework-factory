@@ -1,5 +1,9 @@
 <?php
 
+use Tests\Providers\DemoServiceProvider;
+use FrameworkFactory\Application;
+use Tests\TestState;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -10,6 +14,21 @@
 | need to change it using the "pest()" function to bind a different classes or traits.
 |
 */
+
+pest()->beforeAll(function() {
+	// cache path
+	TestState::$cachePath = __DIR__ . '/Cache';
+
+	// application instance
+	TestState::$app = Application::build(TestState::$cachePath);
+
+	// assign a default provider
+	TestState::$app->withProviders([
+		DemoServiceProvider::class,
+	]);
+
+	TestState::$app->fire();
+});
 
 pest()->extend(Tests\TestCase::class)->in('Feature');
 
