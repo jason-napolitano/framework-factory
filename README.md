@@ -20,3 +20,7 @@
       - Provider caching
       - Facade support
  - **Fully tested codebase:** The codebase is fully tested  using the [Pest PHP](https://pestphp.com/) testing framework. You can see all tests by going [here](https://github.com/Framework-Factory/core/tree/main/tests).
+
+### Documentation
+> The documentation can be accessed in one of two ways. All documentation is provided in a [separate repository](https://github.com/Framework-Factory/docs), 
+> and is written in Markdown format. The other way to view the documentation is by visiting the [wiki](https://github.com/Framework-Factory/core/wiki) pages.
