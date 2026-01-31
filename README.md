@@ -1,8 +1,10 @@
 # Framework Factory
 > Framework Factory is a PHP application package. It's inspired by the Laravel framework, without all
-> the bells and whistles. At its core is a robust and powerful PSR-11 compatible dependency container.
+> the bells and whistles. At its core is a robust and powerful PSR-11 compatible dependency container. It
+> requires no external dependencies (aside from Pest for testing) and relies strictly on its own built-in,
+> internal libraries.
 >
-> The aim is to make building a PHP 8 powered application a breeze, by giving a boilerplate for the
+> The aim is to make building a PHP 8 powered application a breeze, by giving a construct for the
 > beginning stages of application development. Provided is an application entrypoint interface, and
 > the logic needed to get your next project going with minimal boilerplate overhead.
 >
