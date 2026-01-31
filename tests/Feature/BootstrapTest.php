@@ -26,6 +26,15 @@ test('the cache file is successfully created and exists', function() {
 	expect(file_exists(rtrim(TestState::$cachePath, '/') . '/app.php'))->toBeTrue();
 });
 
+test('the cache file includes the standard providers injected upon bootstrap', function() {
+	$file = require rtrim(TestState::$cachePath, '/') . '/app.php';
+
+	$providers = $file['providers'];
+
+	expect($providers)->toContain(Providers\StandardServiceProvider::class);
+
+});
+
 test('the cache file includes the deferred providers injected upon bootstrap', function() {
 	$file = require rtrim(TestState::$cachePath, '/') . '/app.php';
 
@@ -35,15 +44,6 @@ test('the cache file includes the deferred providers injected upon bootstrap', f
 		->toHaveKey('deferred_provider')
 		->and($deferred['deferred_provider'])
 		->toContain(Providers\DeferredServiceProvider::class);
-
-});
-
-test('the cache file includes the regular providers injected upon bootstrap', function() {
-	$file = require rtrim(TestState::$cachePath, '/') . '/app.php';
-
-	$providers = $file['providers'];
-
-	expect($providers)->toContain(Providers\StandardServiceProvider::class);
 
 });
 
