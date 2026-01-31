@@ -37,7 +37,7 @@ namespace FrameworkFactory {
         /**
          * @inheritdoc
          */
-        public static function build(?string $cachePath = null): self
+        public static function build(string $cachePath): self
         {
             // build a new container instance
             self::$container = new App\Container($cachePath);

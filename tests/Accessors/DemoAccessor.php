@@ -7,7 +7,7 @@ namespace Tests\Accessors {
 	/**
 	 * @method static message(string $message): string
 	 */
-	class StandardAccessor extends Accessor
+	class DemoAccessor extends Accessor
 	{
 		/** @inheritdoc */
 		protected static string $key = 'standard_provider';

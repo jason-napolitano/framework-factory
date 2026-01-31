@@ -6,18 +6,12 @@ namespace FrameworkFactory\Contracts\Providers {
 
     abstract class ServiceProvider
     {
-        /** @var ContainerInstance $container container instance */
-        protected ContainerInstance $container;
-
         /**
          * Builds a new service provider
          *
-         * @param ContainerInstance $container
+         * @param ContainerInstance $container container instance
          */
-        public function __construct(ContainerInstance $container)
-        {
-            $this->container = $container;
-        }
+        public function __construct(protected ContainerInstance $container) {}
 
         /**
          * Registers new container bindings
