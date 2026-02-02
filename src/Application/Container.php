@@ -93,6 +93,13 @@ namespace FrameworkFactory\Application {
             $this->contextual[$concrete][$abstract] = $implementation;
         }
 
+	    /**
+	     * Dependency context resolution
+	     *
+	     * @param string $id
+	     *
+	     * @return mixed
+	     */
         protected function resolveWithContext(string $id): mixed
         {
             // If resolving as a dependency of something else
