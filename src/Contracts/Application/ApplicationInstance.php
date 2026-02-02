@@ -5,6 +5,9 @@ namespace FrameworkFactory\Contracts\Application {
     use FrameworkFactory\Exceptions;
     use FrameworkFactory\Contracts;
 
+	/**
+	 * This represents the application's main entrypoint instance
+	 */
     interface ApplicationInstance
     {
         /**

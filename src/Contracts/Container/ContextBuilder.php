@@ -2,6 +2,9 @@
 
 namespace FrameworkFactory\Contracts\Container {
 
+	/**
+	 * This represents to context builder's fluent API
+	 */
     interface ContextBuilder
     {
         /**

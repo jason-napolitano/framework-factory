@@ -7,6 +7,11 @@ namespace FrameworkFactory\Application {
     use FrameworkFactory\Contracts\Providers\ServiceProvider;
     use FrameworkFactory\Application\Bootstrap\Formatter;
 
+	/**
+	 * The bootstrap file is responsible for building a cache file and
+	 * loading any service providers into the cache file, along with their
+	 * aliases.
+	 */
     class Bootstrap
     {
         /**

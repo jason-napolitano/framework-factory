@@ -4,6 +4,9 @@ namespace FrameworkFactory\Contracts\Providers {
 
     use FrameworkFactory\Contracts\Container\ContainerInstance;
 
+	/**
+	 * This class is to be extended by all service providers
+	 */
     abstract class ServiceProvider
     {
         /**

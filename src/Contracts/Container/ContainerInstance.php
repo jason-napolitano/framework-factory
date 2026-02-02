@@ -4,6 +4,9 @@ namespace FrameworkFactory\Contracts\Container {
 
     use Psr\Container\ContainerInterface as PsrContainerInterface;
 
+	/**
+	 * This represents the PSR-11 container instance
+	 */
     interface ContainerInstance extends PsrContainerInterface
     {
         /**
