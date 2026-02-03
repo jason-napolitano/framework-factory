@@ -62,7 +62,7 @@ namespace FrameworkFactory {
             }
 
             // assign the providers
-            self::$providers = [...self::$providers, ...$providers];
+            self::$providers = $providers;
         }
 
         /**
