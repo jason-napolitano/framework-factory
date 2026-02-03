@@ -68,21 +68,19 @@ namespace FrameworkFactory\Application {
 	     * @param int    $permissions
 	     * @param bool   $recursive
 	     *
-	     * @return bool
+	     * @return void
 	     */
-	    protected static function createCacheDirectory(string $path, int $permissions = 0775, bool $recursive = true): bool
+	    protected static function createCacheDirectory(string $path, int $permissions = 0775, bool $recursive = true): void
 	    {
 		    // If it's already a directory, do nothing
 		    if (is_dir($path)) {
-			    return true;
+			    return;
 		    }
 
 		    // Otherwise, attempt to create it
 		    if (!mkdir($path, $permissions, $recursive) && !is_dir($path)) {
 			    throw new DirectoryNotCreated(sprintf('Directory "%s" was not created', $path));
 		    }
-
-		    return false;
 	    }
 
 	    /**
