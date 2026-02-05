@@ -8,6 +8,6 @@ namespace Tests {
     {
         public static ApplicationInstance $app;
 
-        public static string $cachePath;
+        public static ?string $cachePath;
     }
 }

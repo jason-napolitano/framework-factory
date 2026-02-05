@@ -17,10 +17,10 @@ use Tests\Providers;
 
 pest()->beforeAll(function () {
     // cache path
-    TestState::$cachePath = __DIR__ . '/Cache';
+    TestState::$cachePath = getcwd() . '/cache'; // default library value
 
     // application instance
-    TestState::$app = Application::build(TestState::$cachePath);
+    TestState::$app = Application::build();
 
     // assign a default provider
     TestState::$app->withProviders([

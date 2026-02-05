@@ -15,11 +15,11 @@ namespace FrameworkFactory\Contracts\Application {
          * the container, and returns the current app
          * instance
          *
-         * @param string $cachePath Path the cache directory
+         * @param string|null $cachePath Path the cache directory
          *
          * @return self
          */
-        public static function build(string $cachePath): self;
+        public static function build(?string $cachePath = null): self;
 
         /**
          * Registers multiple service providers
