@@ -64,7 +64,7 @@ describe('support tests', function () {
 		expect($value)->toBe('word');
 	});
 
-	test('\FrameworkFactory\Support\Str returns a valid v4 UUID', function () {
+	test('\FrameworkFactory\Support\Str::uuid() returns a valid v4 UUID', function () {
 		$value = \FrameworkFactory\Support\Str::uuid();
 		expect($value)->toBeUuid();
 	});
