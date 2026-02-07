@@ -4,14 +4,14 @@
 use function FrameworkFactory\Helpers\Support\str;
 
 describe('support tests', function () {
-    test('the str() helper returns a single-quoted string without quotes', function () {
-        $value = str('"This is a single quoted string"')->stripQuotes()->get();
-        expect($value)->toBe('This is a single quoted string');
+    test('the str() helper returns a double-quoted string without quotes', function () {
+        $value = str('"This is a double quoted string"')->stripQuotes()->get();
+        expect($value)->toBe('This is a double quoted string');
     });
 
-    test('the str() helper returns a double-quoted string without quotes', function () {
-	    $value = str("'This is a double quoted string'")->stripQuotes()->get();
-	    expect($value)->toBe('This is a double quoted string');
+    test('the str() helper returns a single-quoted string without quotes', function () {
+	    $value = str("'This is a single quoted string'")->stripQuotes()->get();
+	    expect($value)->toBe('This is a single quoted string');
     });
 
 	test('the str() helper returns a pluralized version of a word', function () {
