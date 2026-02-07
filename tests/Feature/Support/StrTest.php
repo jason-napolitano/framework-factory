@@ -24,42 +24,42 @@ describe('support tests', function () {
 		expect($value)->toBe('cat');
 	});
 
-	test('a string that has been converted to a dot notation format', function () {
+	test('the str() helper returns a string that has been converted to a dot notation format', function () {
 		$value = str('this is a sentence')->dot()->get();
 		expect($value)->toBe('this.is.a.sentence');
 	});
 
-	test('a string that has been converted to a snake format', function () {
+	test('the str() helper returns a string that has been converted to a snake format', function () {
 		$value = str('this is a sentence')->snake()->get();
 		expect($value)->toBe('this_is_a_sentence');
 	});
 
-	test('a string that has been converted to a title format', function () {
+	test('the str() helper returns a string that has been converted to a title format', function () {
 		$value = str('this is a sentence')->title()->get();
 		expect($value)->toBe('This Is A Sentence');
 	});
 
-	test('a string that has been converted to a slug format', function () {
+	test('the str() helper returns a string that has been converted to a slug format', function () {
 		$value = str('this is a sentence')->slug()->get();
 		expect($value)->toBe('this-is-a-sentence');
 	});
 
-	test('a string that has been converted to a lowercase format', function () {
+	test('the str() helper returns a string that has been converted to a lowercase format', function () {
 		$value = str('WoRD')->lower()->get();
 		expect($value)->toBe('word');
 	});
 
-	test('a string that has been converted to an uppercase format', function () {
+	test('the str() helper returns a string that has been converted to an uppercase format', function () {
 		$value = str('wOrd')->upper()->get();
 		expect($value)->toBe('WORD');
 	});
 
-	test('confirms whether or not a string\'s value is empty', function () {
+	test('the str() helper returns confirms whether or not a string\'s value is empty', function () {
 		$value = str('')->empty();
 		expect($value)->toBeTrue();
 	});
 
-	test('the str() helper returns a string that has been properly trimmed', function () {
+	test('the str() helper returns the str() helper returns a string that has been properly trimmed', function () {
 		$value = str('   word   ')->trim()->get();
 		expect($value)->toBe('word');
 	});
