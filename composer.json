@@ -15,7 +15,8 @@
       "Tests\\": "tests"
     },
     "files": [
-      "src/Helpers/container.php"
+      "src/Helpers/container.php",
+      "src/Helpers/support.php"
     ]
   },
   "scripts": {
