@@ -29,16 +29,20 @@ namespace FrameworkFactory {
         /** @var array $providers base service providers */
         private static array $providers = [];
 
+        /** @var string $basePath the base path for the application */
+        protected static string $basePath;
+
         /** @var string $cachePath the path for the cached bootstrap file */
         protected static string $cachePath;
 
         /**
          * @inheritdoc
          */
-        public static function build(?string $cachePath = null): self
+        public static function build(string $basePath): self
         {
-            // assign the cache path
-            self::$cachePath = $cachePath ?? getcwd() . '/cache/';
+            // assign the base and cache paths
+            self::$basePath = rtrim($basePath, '/') . DIRECTORY_SEPARATOR;
+            self::setCachePath($basePath);
 
             // build a new container instance
             self::$container = new App\Container(self::$cachePath);
@@ -48,6 +52,18 @@ namespace FrameworkFactory {
 
             // assign and return the application instance
             return new self();
+        }
+
+        /**
+         * Builds the cache path location
+         *
+         * @param string $basePath
+         *
+         * @return void
+         */
+        private static function setCachePath(string $basePath): void
+        {
+            self::$cachePath = $basePath . 'cache';
         }
 
         /**
@@ -107,6 +123,14 @@ namespace FrameworkFactory {
         public static function version(): string
         {
             return self::$version;
+        }
+
+        /**
+         * @inheritdoc
+         */
+        public static function basePath(): string
+        {
+            return trim(self::$basePath);
         }
     }
 }
