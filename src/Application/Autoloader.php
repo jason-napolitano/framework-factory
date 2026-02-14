@@ -41,7 +41,7 @@ namespace FrameworkFactory\Application {
                 $this->prefixes[$prefix][] = $baseDir;
             }
 
-			return $this;
+            return $this;
         }
 
         /**
