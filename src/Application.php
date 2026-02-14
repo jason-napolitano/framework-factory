@@ -35,10 +35,14 @@ namespace FrameworkFactory {
         /** @var string $cachePath the path for the cached bootstrap file */
         protected static string $cachePath;
 
+		protected static string $appNamespace;
+
+		protected static string $appDirectory;
+
         /**
          * @inheritdoc
          */
-        public static function build(string $basePath): self
+        public static function build(string $basePath, string $namespace = 'App', string $directory = 'app'): self
         {
             // assign the base and cache paths
             self::$basePath = rtrim($basePath, '/') . DIRECTORY_SEPARATOR;
@@ -50,9 +54,28 @@ namespace FrameworkFactory {
             // configure the facade / accessor system
             App\Accessor::setContainer(self::$container);
 
+			// Build the autoloader
+	        self::buildAutoloader($namespace, $directory);
+
             // assign and return the application instance
             return new self();
         }
+
+	    /**
+	     * Builds an autoloader for project directory and class loading
+	     *
+	     * @param string $namespace
+	     * @param string $directory
+	     *
+	     * @return void
+	     */
+	    private static function buildAutoloader(string $namespace, string $directory): void
+	    {
+			self::$appNamespace = rtrim($namespace, '\\') . '\\';
+			self::$appDirectory = self::$basePath . $directory;
+
+			new App\Autoloader()->addNamespace(self::$appNamespace, self::$appDirectory)->register();
+		}
 
         /**
          * Builds the cache path location
@@ -132,5 +155,21 @@ namespace FrameworkFactory {
         {
             return trim(self::$basePath);
         }
+
+	    /**
+	     * @inheritdoc
+	     */
+		public static function appNamespace(): string
+		{
+			return self::$appNamespace;
+		}
+
+	    /**
+	     * @inheritdoc
+	     */
+		public static function appDirectory(): string
+		{
+			return trim(self::$appDirectory);
+		}
     }
 }

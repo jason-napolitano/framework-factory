@@ -9,7 +9,8 @@
   },
   "require-dev": {
     "pestphp/pest": "^4.1",
-    "laravel/pint": "^1.27"
+    "laravel/pint": "^1.27",
+    "symfony/var-dumper": "^v8.0.4"
   },
   "autoload": {
     "psr-4": {

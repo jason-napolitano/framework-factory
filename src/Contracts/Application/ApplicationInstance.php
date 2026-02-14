@@ -10,16 +10,18 @@ namespace FrameworkFactory\Contracts\Application {
      */
     interface ApplicationInstance
     {
-        /**
-         * The initial bootstrap process which builds
-         * the container, and returns the current app
-         * instance
-         *
-         * @param string $basePath Path the base directory
-         *
-         * @return self
-         */
-        public static function build(string $basePath): self;
+	    /**
+	     * The initial bootstrap process which builds
+	     * the container, generates a built-in
+	     * autoloader and returns the app instance
+	     *
+	     * @param string $basePath Path the base directory
+	     * @param string $namespace
+	     * @param string $directory
+	     *
+	     * @return self
+	     */
+        public static function build(string $basePath, string $namespace = 'App', string $directory = 'app'): self;
 
         /**
          * Registers multiple service providers
@@ -72,10 +74,24 @@ namespace FrameworkFactory\Contracts\Application {
         public static function version(): string;
 
         /**
-         * Returns the applications base path
+         * Returns the application base path
          *
          * @return string
          */
         public static function basePath(): string;
+
+	    /**
+	     * Returns the application namespace
+	     *
+	     * @return string
+	     */
+	    public static function appNamespace(): string;
+
+	    /**
+	     * Returns the application directory
+	     *
+	     * @return string
+	     */
+	    public static function appDirectory(): string;
     }
 }
