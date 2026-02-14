@@ -31,5 +31,8 @@
       "pestphp/pest-plugin": true
     },
     "optimize-autoloader": true
-  }
+  },
+  "bin": [
+    "bin/console"
+  ]
 }
