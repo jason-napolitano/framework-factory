@@ -289,7 +289,7 @@ namespace FrameworkFactory\Application {
          */
         public function providers(): array
         {
-            return $this->providers;
+            return [...$this->providers, ...$this->deferred];
         }
     }
 }
