@@ -16,6 +16,7 @@ namespace FrameworkFactory\Contracts\Providers {
          */
         public function __construct(protected ContainerInstance $container)
         {
+			// ...
         }
 
         /**
