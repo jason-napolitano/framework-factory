@@ -35,9 +35,6 @@ namespace FrameworkFactory {
         /** @var string $cachePath the path for the cached bootstrap file */
         protected static string $cachePath;
 
-		/** @var array $autoDiscoveredProviders a collection of auto-discovered providers */
-		private static array $autoDiscoveredProviders;
-
         /**
          * @inheritdoc
          */
