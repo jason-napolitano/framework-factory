@@ -2,7 +2,7 @@
 
 namespace FrameworkFactory\Contracts\Application {
 
-    use FrameworkFactory\Exceptions;
+	use FrameworkFactory\Exceptions;
     use FrameworkFactory\Contracts;
 
     /**
@@ -16,12 +16,10 @@ namespace FrameworkFactory\Contracts\Application {
          * autoloader and returns the app instance
          *
          * @param string $basePath Path the base directory
-         * @param string $namespace
-         * @param string $directory
          *
          * @return self
          */
-        public static function build(string $basePath, string $namespace = 'App', string $directory = 'app'): self;
+        public static function build(string $basePath): self;
 
         /**
          * Registers multiple service providers
@@ -79,19 +77,5 @@ namespace FrameworkFactory\Contracts\Application {
          * @return string
          */
         public static function basePath(): string;
-
-        /**
-         * Returns the application namespace
-         *
-         * @return string
-         */
-        public static function appNamespace(): string;
-
-        /**
-         * Returns the application directory
-         *
-         * @return string
-         */
-        public static function appDirectory(): string;
     }
 }

@@ -35,7 +35,7 @@ namespace FrameworkFactory\Application {
          *
          * @return mixed
          */
-        protected static function resolve(): mixed
+        protected static function resolver(): mixed
         {
             if (!isset(static::$container)) {
                 throw new Exceptions\Container\ContainerException('Application container has not been set.');
@@ -55,7 +55,7 @@ namespace FrameworkFactory\Application {
          */
         public static function __callStatic(string $method, array $arguments)
         {
-            $instance = static::resolve();
+            $instance = static::resolver();
 
             if (!method_exists($instance, $method)) {
                 throw new \BadMethodCallException(

@@ -1,10 +1,5 @@
 <?php
 
-/*
- * The helpers contained within this namespace are there to assist
- * in working with the container using a procedural API.
- */
-
 namespace FrameworkFactory\Helpers\Container {
 
     use FrameworkFactory\Application;

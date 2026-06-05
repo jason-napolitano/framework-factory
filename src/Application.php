@@ -35,20 +35,17 @@ namespace FrameworkFactory {
         /** @var string $cachePath the path for the cached bootstrap file */
         protected static string $cachePath;
 
-        /** @var string $appNamespace the application namespace */
-        protected static string $appNamespace;
-
-        /** @var string $appNamespace the application directory */
-        protected static string $appDirectory;
+		/** @var array $autoDiscoveredProviders a collection of auto-discovered providers */
+		private static array $autoDiscoveredProviders;
 
         /**
          * @inheritdoc
          */
-        public static function build(string $basePath, string $namespace = 'App', string $directory = 'app'): self
+        public static function build(string $basePath): self
         {
             // assign the base and cache paths
             self::$basePath = rtrim($basePath, '/') . DIRECTORY_SEPARATOR;
-            self::setCachePath($basePath);
+            self::setCachePath(self::$basePath);
 
             // build a new container instance
             self::$container = new App\Container(self::$cachePath);
@@ -56,27 +53,8 @@ namespace FrameworkFactory {
             // configure the facade / accessor system
             App\Accessor::setContainer(self::$container);
 
-            // Build the autoloader
-            self::buildAutoloader($namespace, $directory);
-
-            // assign and return the application instance
+            // return the application instance
             return new self();
-        }
-
-        /**
-         * Builds an autoloader for project directory and class loading
-         *
-         * @param string $namespace
-         * @param string $directory
-         *
-         * @return void
-         */
-        private static function buildAutoloader(string $namespace, string $directory): void
-        {
-            self::$appNamespace = rtrim($namespace, '\\') . '\\';
-            self::$appDirectory = self::$basePath . $directory;
-
-            new App\Autoloader()->addNamespace(self::$appNamespace, self::$appDirectory)->register();
         }
 
         /**
@@ -101,7 +79,7 @@ namespace FrameworkFactory {
             }
 
             // assign the providers
-            self::$providers = $providers;
+	        self::$providers = [...self::$providers, ...$providers];
         }
 
         /**
@@ -156,22 +134,6 @@ namespace FrameworkFactory {
         public static function basePath(): string
         {
             return trim(self::$basePath);
-        }
-
-        /**
-         * @inheritdoc
-         */
-        public static function appNamespace(): string
-        {
-            return self::$appNamespace;
-        }
-
-        /**
-         * @inheritdoc
-         */
-        public static function appDirectory(): string
-        {
-            return trim(self::$appDirectory);
         }
     }
 }
