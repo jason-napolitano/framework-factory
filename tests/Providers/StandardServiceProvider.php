@@ -12,7 +12,7 @@ namespace Tests\Providers {
          */
         public function register(): void
         {
-            $this->container->bind('standard_provider', fn () => new DemoService());
+            $this->bind('standard_provider', fn () => new DemoService());
         }
     }
 }

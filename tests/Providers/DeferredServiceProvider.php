@@ -12,7 +12,7 @@ namespace Tests\Providers {
          */
         public function register(): void
         {
-            $this->container->singleton('deferred_provider', fn () => new DemoService());
+            $this->singleton('deferred_provider', fn () => new DemoService());
         }
 
         /**

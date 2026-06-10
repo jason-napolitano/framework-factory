@@ -39,6 +39,59 @@ namespace FrameworkFactory\Contracts\Providers {
             return [];
         }
 
+	    /**
+	     * Shorthand function to reach the container's beforeResolving hook
+	     *
+	     * @param string $id
+	     * @param        $concrete
+	     *
+	     * @return void
+	     */
+	    public function beforeResolving(string $id, $concrete): void
+	    {
+		    $this->container->beforeResolving($id, $concrete);
+		}
+
+	    /**
+	     * Shorthand function to reach the container's beforeResolving hook
+	     *
+	     * @param string $id
+	     * @param        $concrete
+	     *
+	     * @return void
+	     */
+	    public function afterResolving(string $id, $concrete): void
+	    {
+		    $this->container->afterResolving($id, $concrete);
+		}
+
+	    /**
+	     * Shorthand function for binding a service to the container
+	     *
+	     * @param string $id
+	     * @param        $concrete
+	     *
+	     * @return void
+	     */
+	    public function bind(string $id, $concrete): void
+	    {
+		    $this->container->bind($id, $concrete);
+		}
+
+	    /**
+	     * Shorthand function for binding a singleton instance to the
+	     * container
+	     *
+	     * @param string $id
+	     * @param        $concrete
+	     *
+	     * @return void
+	     */
+	    public function singleton(string $id, $concrete): void
+	    {
+		    $this->container->singleton($id, $concrete);
+		}
+
         /**
          * Boots after all providers are registered
          *
