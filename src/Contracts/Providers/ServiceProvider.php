@@ -3,6 +3,7 @@
 namespace FrameworkFactory\Contracts\Providers {
 
     use FrameworkFactory\Contracts\Container\ContainerInstance;
+	use FrameworkFactory\Contracts\Container\ContextBuilder;
 
     /**
      * This class is to be extended by all service providers
@@ -90,6 +91,18 @@ namespace FrameworkFactory\Contracts\Providers {
 	    public function singleton(string $id, $concrete): void
 	    {
 		    $this->container->singleton($id, $concrete);
+		}
+
+	    /**
+	     * A shorthand function for utilizing the Context API
+	     *
+	     * @param string $concrete
+	     *
+	     * @return ContextBuilder
+	     */
+	    public function when(string $concrete): ContextBuilder
+	    {
+		    return $this->container->when($concrete);
 		}
 
         /**
