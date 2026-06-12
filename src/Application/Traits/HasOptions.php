@@ -53,16 +53,15 @@ namespace FrameworkFactory\Application\Traits {
 		 */
 		public function __call(string $method, array $arguments)
 		{
-			try {
+			if (str_starts_with($method, 'set')) {
 				$option = lcfirst(substr($method, 3));
 				self::$options[$option] = $arguments[0] ?? null;
 				return $this;
-
-			} catch (\Throwable) {
-				throw new \BadMethodCallException(
-					sprintf('%s::%s() does not exist.', static::class, $method)
-				);
 			}
+
+			throw new \BadMethodCallException(
+				sprintf('%s::%s() does not exist.', static::class, $method)
+			);
 		}
 	}
 }
