@@ -2,9 +2,10 @@
 
 namespace FrameworkFactory {
 
-    use FrameworkFactory\Application as App;
+	use FrameworkFactory\Application\Traits\HasOptions;
+	use FrameworkFactory\Application as App;
 
-    /**
+	/**
      * This is the application entry point used to build and
      * bootstrap an application. It sets up the container and
      * configures the core libraries.
@@ -20,11 +21,10 @@ namespace FrameworkFactory {
      */
     final class Application implements Contracts\Application\ApplicationInstance
     {
+		use HasOptions;
+
         /** @var Contracts\Container\ContainerInstance $container service container */
         protected static Contracts\Container\ContainerInstance $container;
-
-        /** @var string|null $version current application version */
-        private static ?string $version = null;
 
         /** @var array $providers base service providers */
         private static array $providers = [];
@@ -35,7 +35,7 @@ namespace FrameworkFactory {
         /** @var string $cachePath the path for the cached bootstrap file */
         protected static string $cachePath;
 
-        /**
+	    /**
          * @inheritdoc
          */
         public static function build(string $basePath): self
@@ -82,15 +82,6 @@ namespace FrameworkFactory {
         /**
          * @inheritdoc
          */
-        public function asVersion(string $version): void
-        {
-            // assign the version
-            self::$version = $version;
-        }
-
-        /**
-         * @inheritdoc
-         */
         public function fire(): void
         {
             // run the bootstrap build process
@@ -115,14 +106,6 @@ namespace FrameworkFactory {
         public static function container(): Contracts\Container\ContainerInstance
         {
             return self::$container;
-        }
-
-        /**
-         * @inheritdoc
-         */
-        public static function version(): string
-        {
-            return self::$version;
         }
 
         /**

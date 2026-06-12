@@ -41,16 +41,6 @@ namespace FrameworkFactory\Contracts\Application {
         public function fire(): void;
 
         /**
-         * Allows the version of the application to be
-         * changed
-         *
-         * @param string $version
-         *
-         * @return void
-         */
-        public function asVersion(string $version): void;
-
-        /**
          * A collection of service providers
          *
          * @return array<string>
@@ -69,7 +59,7 @@ namespace FrameworkFactory\Contracts\Application {
          *
          * @return string
          */
-        public static function version(): string;
+//        public static function version(): string;
 
         /**
          * Returns the application base path
