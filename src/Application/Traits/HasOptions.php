@@ -5,27 +5,12 @@ namespace FrameworkFactory\Application\Traits {
 	/**
 	 * Allows for application configuration to be dynamically
 	 * assigned, and retrieved for each application instance.
-	 *
-	 * Config getters:
-	 * @method static description(): string
-	 * @method static version(): string
-	 * @method static authors(): array
-	 * @method static title(): string
-	 *
-	 * Config setters:
-	 * @method setDescription(string $description): void
-	 * @method setAuthors(array $authors): void
-	 * @method setVersion(string $title): void
-	 * @method setTitle(string $title): void
 	 */
 	trait HasOptions
 	{
 		/** @var array|string[] $options configurable options */
 		private static array $options = [
-			'description',
-			'version',
-			'authors',
-			'title',
+			// ...
 		];
 
 		/**
@@ -39,7 +24,7 @@ namespace FrameworkFactory\Application\Traits {
 		 */
 		public static function __callStatic(string $name, array $arguments)
 		{
-			return self::$options[$name] ?? null;
+			return self::$options[self::camelize($name)] ?? null;
 		}
 
 		/**
@@ -54,13 +39,29 @@ namespace FrameworkFactory\Application\Traits {
 		public function __call(string $method, array $arguments)
 		{
 			if (str_starts_with($method, 'set')) {
-				$option = lcfirst(substr($method, 3));
+				$option = self::camelize(substr($method, 3));
+
 				self::$options[$option] = $arguments[0] ?? null;
+
 				return $this;
 			}
 
 			throw new \BadMethodCallException(
 				sprintf('%s::%s() does not exist.', static::class, $method)
+			);
+		}
+
+		/**
+		 * Returns a camel-case string
+		 *
+		 * @param string $string
+		 *
+		 * @return string
+		 */
+		private static function camelize(string $string): string
+		{
+			return strtolower(
+				preg_replace('/(?<!^)[A-Z]/', '_$0', $string)
 			);
 		}
 	}

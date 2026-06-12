@@ -8,9 +8,10 @@ describe('bootstrap tests', function () {
 		expect(Tests\TestState::$app)->toBeInstanceOf(Contracts\Application\ApplicationInstance::class);
 	});
 
-	test('the application config values can be assigned values using method chaining', function () {
+	test('the application instance\'s custom config values can be assigned values using method chaining', function () {
 		Tests\TestState::$app
 			->setTitle('My Application')
+			->setCustomUrl('https://google.com')
 			->setVersion('1.2.3')
 			->setAuthors([
 				'John Doe',
@@ -18,6 +19,7 @@ describe('bootstrap tests', function () {
 			]);
 
 		expect(Application::title())->toBe('My Application')
+			->and(Application::customUrl())->toBe('https://google.com')
 			->and(Application::version())->toBe('1.2.3')
 			->and(Application::authors())->toBe([
 				'John Doe',
@@ -25,4 +27,5 @@ describe('bootstrap tests', function () {
 			]);
 
 	});
+
 })->group('bootstrap');
