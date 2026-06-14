@@ -2,8 +2,7 @@
 
 namespace FrameworkFactory\Contracts\Providers {
 
-    use FrameworkFactory\Contracts\Container\ContainerInstance;
-	use FrameworkFactory\Contracts\Container\ContextBuilder;
+    use FrameworkFactory\Contracts\Container;
 
     /**
      * This class is to be extended by all service providers
@@ -13,11 +12,11 @@ namespace FrameworkFactory\Contracts\Providers {
         /**
          * Builds a new service provider
          *
-         * @param ContainerInstance $container container instance
+         * @param Container\ContainerInstance $container container instance
          */
-        public function __construct(protected ContainerInstance $container)
+        public function __construct(protected Container\ContainerInstance $container)
         {
-			// ...
+            // ...
         }
 
         /**
@@ -40,70 +39,70 @@ namespace FrameworkFactory\Contracts\Providers {
             return [];
         }
 
-	    /**
-	     * Shorthand function to reach the container's beforeResolving hook
-	     *
-	     * @param string $id
-	     * @param        $concrete
-	     *
-	     * @return void
-	     */
-	    public function beforeResolving(string $id, $concrete): void
-	    {
-		    $this->container->beforeResolving($id, $concrete);
-		}
+        /**
+         * Shorthand function to reach the container's beforeResolving hook
+         *
+         * @param string $id
+         * @param        $concrete
+         *
+         * @return void
+         */
+        public function beforeResolving(string $id, $concrete): void
+        {
+            $this->container->beforeResolving($id, $concrete);
+        }
 
-	    /**
-	     * Shorthand function to reach the container's beforeResolving hook
-	     *
-	     * @param string $id
-	     * @param        $concrete
-	     *
-	     * @return void
-	     */
-	    public function afterResolving(string $id, $concrete): void
-	    {
-		    $this->container->afterResolving($id, $concrete);
-		}
+        /**
+         * Shorthand function to reach the container's beforeResolving hook
+         *
+         * @param string $id
+         * @param        $concrete
+         *
+         * @return void
+         */
+        public function afterResolving(string $id, $concrete): void
+        {
+            $this->container->afterResolving($id, $concrete);
+        }
 
-	    /**
-	     * Shorthand function for binding a service to the container
-	     *
-	     * @param string $id
-	     * @param        $concrete
-	     *
-	     * @return void
-	     */
-	    public function bind(string $id, $concrete): void
-	    {
-		    $this->container->bind($id, $concrete);
-		}
+        /**
+         * Shorthand function for binding a service to the container
+         *
+         * @param string $id
+         * @param        $concrete
+         *
+         * @return void
+         */
+        public function bind(string $id, $concrete): void
+        {
+            $this->container->bind($id, $concrete);
+        }
 
-	    /**
-	     * Shorthand function for binding a singleton instance to the
-	     * container
-	     *
-	     * @param string $id
-	     * @param        $concrete
-	     *
-	     * @return void
-	     */
-	    public function singleton(string $id, $concrete): void
-	    {
-		    $this->container->singleton($id, $concrete);
-		}
+        /**
+         * Shorthand function for binding a singleton instance to the
+         * container
+         *
+         * @param string $id
+         * @param        $concrete
+         *
+         * @return void
+         */
+        public function singleton(string $id, $concrete): void
+        {
+            $this->container->singleton($id, $concrete);
+        }
 
-	    /**
-	     * A shorthand function for utilizing the Context API
-	     *
-	     * @param string $concrete
-	     *
-	     * @return ContextBuilder
-	     */
-	    public function when(string $concrete): ContextBuilder
-	    {
-		    return $this->container->when($concrete);
-		}
+        /**
+         * A shorthand function for utilizing the Context API
+         *
+         * @param string $concrete
+         *
+         * @return Container\ContextBuilder
+         */
+        public function when(string $concrete): Container\ContextBuilder
+        {
+            return $this->container->when($concrete);
+        }
 
         /**
          * Boots after all providers are registered

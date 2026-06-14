@@ -2,7 +2,7 @@
 
 namespace FrameworkFactory\Contracts\Application {
 
-	use FrameworkFactory\Exceptions;
+    use FrameworkFactory\Exceptions;
     use FrameworkFactory\Contracts;
 
     /**
@@ -53,6 +53,6 @@ namespace FrameworkFactory\Contracts\Application {
          *
          * @return Contracts\Container\ContainerInstance
          */
-	    public static function get(string $id): mixed;
+        public static function get(string $id): mixed;
     }
 }

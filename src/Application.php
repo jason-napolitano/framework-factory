@@ -2,10 +2,10 @@
 
 namespace FrameworkFactory {
 
-	use FrameworkFactory\Application\Traits\HasOptions;
-	use FrameworkFactory\Application as App;
+    use FrameworkFactory\Application\Traits\HasOptions;
+    use FrameworkFactory\Application as App;
 
-	/**
+    /**
      * This is the application entry point used to build and
      * bootstrap an application. It sets up the container and
      * configures the core libraries.
@@ -21,21 +21,21 @@ namespace FrameworkFactory {
      */
     final class Application implements Contracts\Application\ApplicationInstance
     {
-		use HasOptions;
+        use HasOptions;
 
         /** @var Contracts\Container\ContainerInstance $container service container */
-	    private static Contracts\Container\ContainerInstance $container;
+        private static Contracts\Container\ContainerInstance $container;
 
         /** @var array $providers base service providers */
         private static array $providers = [];
 
         /** @var string $basePath the base path for the application */
-	    private static string $basePath;
+        private static string $basePath;
 
         /** @var string $cachePath the path for the cached bootstrap file */
-	    private static string $cachePath;
+        private static string $cachePath;
 
-	    /**
+        /**
          * @inheritdoc
          */
         public static function build(string $basePath): self
@@ -79,19 +79,19 @@ namespace FrameworkFactory {
             self::$container->bootProviders();
         }
 
-	    /**
-	     * @inheritdoc
-	     */
-	    public function withProviders(array $providers): void
-	    {
-			// if the $providers is an empty array, throw an exception
-		    if (empty($providers)) {
-			    throw new Exceptions\Container\EmptyProvidersValue('The providers array cannot be empty');
-		    }
+        /**
+         * @inheritdoc
+         */
+        public function withProviders(array $providers): void
+        {
+            // if the $providers is an empty array, throw an exception
+            if (empty($providers)) {
+                throw new Exceptions\Container\EmptyProvidersValue('The providers array cannot be empty');
+            }
 
-		    // assign the providers
-		    self::$providers = [...self::$providers, ...$providers];
-	    }
+            // assign the providers
+            self::$providers = [...self::$providers, ...$providers];
+        }
 
         /**
          * @inheritdoc
