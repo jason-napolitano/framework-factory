@@ -24,16 +24,16 @@ namespace FrameworkFactory {
 		use HasOptions;
 
         /** @var Contracts\Container\ContainerInstance $container service container */
-        protected static Contracts\Container\ContainerInstance $container;
+	    private static Contracts\Container\ContainerInstance $container;
 
         /** @var array $providers base service providers */
         private static array $providers = [];
 
         /** @var string $basePath the base path for the application */
-        protected static string $basePath;
+	    private static string $basePath;
 
         /** @var string $cachePath the path for the cached bootstrap file */
-        protected static string $cachePath;
+	    private static string $cachePath;
 
 	    /**
          * @inheritdoc
@@ -50,7 +50,7 @@ namespace FrameworkFactory {
             // configure the facade / accessor system
             App\Accessor::setContainer(self::$container);
 
-            // return the application instance
+            // return a new application instance
             return new self();
         }
 
@@ -69,51 +69,44 @@ namespace FrameworkFactory {
         /**
          * @inheritdoc
          */
-        public function withProviders(array $providers): void
-        {
-            if (empty($providers)) {
-                throw new Exceptions\Container\EmptyProvidersValue('The providers array cannot be empty');
-            }
-
-            // assign the providers
-	        self::$providers = [...self::$providers, ...$providers];
-        }
-
-        /**
-         * @inheritdoc
-         */
         public function fire(): void
         {
             // run the bootstrap build process
             App\Bootstrap::build(self::$container, self::$providers, self::$cachePath);
 
-            // bootstrap service providers
+            // bootstrap the service providers and run their boot methods
             self::$container->bootstrap(self::$providers);
             self::$container->bootProviders();
         }
+
+	    /**
+	     * @inheritdoc
+	     */
+	    public function withProviders(array $providers): void
+	    {
+			// if the $providers is an empty array, throw an exception
+		    if (empty($providers)) {
+			    throw new Exceptions\Container\EmptyProvidersValue('The providers array cannot be empty');
+		    }
+
+		    // assign the providers
+		    self::$providers = [...self::$providers, ...$providers];
+	    }
 
         /**
          * @inheritdoc
          */
         public static function providers(): array
         {
-            return self::$providers;
+            return self::$container->providers();
         }
 
         /**
          * @inheritdoc
          */
-        public static function container(): Contracts\Container\ContainerInstance
+        public static function get(string $id): mixed
         {
-            return self::$container;
-        }
-
-        /**
-         * @inheritdoc
-         */
-        public static function basePath(): string
-        {
-            return trim(self::$basePath);
+            return self::$container->get($id);
         }
     }
 }

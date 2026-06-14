@@ -48,24 +48,11 @@ namespace FrameworkFactory\Contracts\Application {
         public static function providers(): array;
 
         /**
-         * Return an instance of the container
+         * Returns a service that has been loaded into
+         * the container
          *
          * @return Contracts\Container\ContainerInstance
          */
-        public static function container(): Contracts\Container\ContainerInstance;
-
-        /**
-         * Returns the current application version
-         *
-         * @return string
-         */
-//        public static function version(): string;
-
-        /**
-         * Returns the application base path
-         *
-         * @return string
-         */
-        public static function basePath(): string;
+	    public static function get(string $id): mixed;
     }
 }

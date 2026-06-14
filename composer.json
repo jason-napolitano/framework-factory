@@ -16,10 +16,7 @@
     "psr-4": {
       "FrameworkFactory\\": "src",
       "Tests\\": "tests"
-    },
-    "files": [
-      "src/Helpers/container.php"
-    ]
+    }
   },
   "scripts": {
     "pint": "./vendor/bin/pint",
